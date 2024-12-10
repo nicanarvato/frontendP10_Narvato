@@ -1,116 +1,130 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { API_ENDPOINT } from './Api';
-import { Navbar, Container, Button, Form, Row, Col, Nav, Card} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import BackgroundImage from './assets/medicine-capsule-showing-active-ingredients.webp';
+import { Container, Button, Form, Row, Col, Spinner } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 function Registration() {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-
     const [fullname, setFullname] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
+    const [loading, setLoading] = useState(false);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setLoading(true);
         try {
             const response = await axios.post(`${API_ENDPOINT}/auth/register`, {
                 fullname,
                 username,
                 password,
             });
+        setLoading(false)
+            await Swal.fire({
+                title: "Register Success!",
+                icon: "success"
+              });
+
         } catch (error) {
+
+            setLoading(false)
+            await Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: error.response.data.message
+              }); 
+
             setError('There is an error processing your request');
         }
     };
 
     return (
-        <div 
-            style={{ 
-                height: '100vh',
-                width: '100vw',
-                display: "flex",
-            }}
-        >
-            {/* Register Form */}
-            <Container style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-                <Row style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-                    <Col>
-                    <img src='/med.jpg' style={{ width:"350px", height: '300px' }} 
-                    alt="Medicine"></img>
+        <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Container fluid>
+                <Row className="h-100">
+                    {/* Image Column */}
+                    <Col md={6} className="d-flex align-items-center justify-content-center">
+                        <img src="/med.jpg" alt="Medicine" style={{ maxWidth: '100%', height: 'auto' }} />
                     </Col>
-                    <Col>
-                        <div>
-                          <Form onSubmit={handleSubmit} style={{ width: "350px", backgroundColor: "#fff", borderRadius: "10px" }}>
-                            <Form.Group controlId="formUsername">
-                             <Form.Label>Fullname</Form.Label>
-                                <Form.Control
-                                  className="form-control-sm rounded-0"
-                                  type="text"
-                                  placeholder="Fullname"
-                                  value={fullname}
-                                  onChange={(e) => setFullname(e.target.value)}
-                                  required
-                                  />
-                                    </Form.Group>            
 
-                                    {/* Username */}
-                                    <Form.Group controlId="formUsername">
-                                        <Form.Label>Username</Form.Label>
-                                            <Form.Control
-                                                className="form-control-sm rounded-0"
-                                                type="text"
-                                                placeholder="Username"
-                                                value={username}
-                                                onChange={(e) => setUsername(e.target.value)}
-                                                required
-                                            />
-                                    </Form.Group>
+                    {/* Form Column */}
+                    <Col
+                        md={6}
+                        className="d-flex align-items-center justify-content-center"
+                        style={{ backgroundColor: '#f8f9fa' }}
+                    >
+                        <div style={{ width: '100%', maxWidth: '400px' }}>
+                            <h3 className="mb-4 text-center">Sign Up Now</h3>
+                            <Form onSubmit={handleSubmit}>
+                                {/* Fullname */}
+                                <Form.Group controlId="formFullname" className="mb-3">
+                                    <Form.Label>Fullname</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Fullname"
+                                        value={fullname}
+                                        onChange={(e) => setFullname(e.target.value)}
+                                        required
+                                    />
+                                </Form.Group>
 
-                                    <br />
+                                {/* Username */}
+                                <Form.Group controlId="formUsername" className="mb-3">
+                                    <Form.Label>Username</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Username"
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        required
+                                    />
+                                </Form.Group>
 
-                                    {/* Password */}
-                                    <Form.Group controlId="formPassword">
-                                        <Form.Label>Password</Form.Label>
-                                            <Form.Control
-                                                className="form-control-sm rounded-0"
-                                                type="password"
-                                                placeholder="Password"
-                                                value={password}
-                                                onChange={(e) => setPassword(e.target.value)}
-                                                required
-                                            />
-                                    </Form.Group>
+                                {/* Password */}
+                                <Form.Group controlId="formPassword" className="mb-3">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control
+                                        type="password"
+                                        placeholder="Password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
+                                </Form.Group>
 
-                                    <br />
+                                {/* Error Message */}
+                                {error && <p style={{ color: 'red' }}>{error}</p>}
 
-                                    <br />
-
-                                    {/* Error Message */}
-                                    {error && <p style={{ color: 'red' }}>{error}</p>}
-
-                                    <Form.Group controlId="formButton" className="text-center">
-                                        <Button 
-                                            type="submit" 
-                                            style={{
-                                                width: "100%",
-                                                backgroundColor: "#007bff",
-                                                color: "white",
-                                                border: "none",
-                                                borderRadius: "5px",
-                                            }}
-                                        >Register</Button>
-                                    </Form.Group>
-                                </Form>
-                            </div>
+                                {/* Submit Button */}
+                                <Button type="submit" className="w-100" style={{ 
+                                    backgroundColor: '#007bff', 
+                                    border: 'none' }}
+                                    disabled={loading} // Disable the button while loading
+            >
+                {loading ? ( // Show spinner if loading
+                    <>
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        /> Loading...
+                    </>
+                ) : (
+                    "Register"
+                )}
+                                </Button>
+                            </Form>
+                        </div>
                     </Col>
                 </Row>
-                </Container>
-            
+            </Container>
         </div>
     );
 }
