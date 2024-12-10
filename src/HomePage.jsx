@@ -17,12 +17,8 @@ function HomePage() {
             <Nav.Link as={Link} to="/about">About</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
-            <Nav.Link>
               <Button variant="outline-primary" as={Link} to="/login">Login</Button>
-            </Nav.Link>
-            <Nav.Link>
               <Button variant="primary" as={Link} to="/register">Register</Button>
-            </Nav.Link>
             <Nav.Link>
               <span className="d-flex align-items-center">
                 <img
