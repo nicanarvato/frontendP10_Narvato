@@ -57,15 +57,19 @@ function Login() {
         >
             {/* Navbar */}
             <Navbar bg="primary">
-                <Container>
-                    <Navbar.Brand href="#" style={{ fontFamily: "fantasy" }}>TruMedsRX</Navbar.Brand>
-                    <Nav className="ms-auto">
-                            <Button variant="primary" as={Link} to="/homepage">Home</Button>
-                            <Button variant="primary" as={Link} to="/about">About</Button>
-                    </Nav>
-                </Container>
-            </Navbar>
-
+  <Container>
+    <Navbar.Brand href="#" style={{ fontFamily: "fantasy" }}>TruMedsRX</Navbar.Brand>
+    {/* Left-aligned Nav items */}
+    <Nav className="me-auto"> {/* "me-auto" aligns items to the left */}
+      <Nav.Link>
+        <Button variant="primary" as={Link} to="/homepage">Home</Button>
+      </Nav.Link>
+      <Nav.Link>
+        <Button variant="primary" as={Link} to="/homepage">About</Button>
+      </Nav.Link>
+    </Nav>
+  </Container>
+</Navbar>
             {/* Login Form */}
             <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
                 <Row className="justify-content-md-center">

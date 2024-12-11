@@ -98,7 +98,7 @@ function Dashboard() {
             <Container className="mt-4">
                 <Row style={{ backgroundColor: "blue", color: "white", alignItems: "center" }}>
                     <Col lg={6}>
-                        <h3 style={{ color: "white", fontFamily:"cursive", fontWeight:"bold" }}>TRUSERVE <br /> PHARMACEUTICAL</h3>
+                        <h3 style={{ color: "white", fontFamily:"cursive", fontWeight:"bold" }}>TRUSERVE <br /> PHARMACEUTICAL  <br /> DISTRIBUTOR</h3>
                     </Col>
                     <Col lg={6} className="text-center">
                         <img src="/bg.jpg" alt="Truserve" style={{ height: "350px", width: "100%", objectFit: "cover" }} />
@@ -110,9 +110,11 @@ function Dashboard() {
                         <Card.Body>
                             <Card.Title>Product Categories</Card.Title>
                             <ListGroup className="list-group-flush" >
-                            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                            <ListGroup.Item>Pharmacy</ListGroup.Item>
+                            <ListGroup.Item>HealthCare</ListGroup.Item>
+                            <ListGroup.Item>Beauty</ListGroup.Item>
+                            <ListGroup.Item>Personal Care</ListGroup.Item>
+                            <ListGroup.Item>Baby&Kids</ListGroup.Item>
                         </ListGroup>
                         </Card.Body>
                     </Card>
@@ -120,108 +122,186 @@ function Dashboard() {
                     <Col lg={9}>
                         <Row className='g-4 mt-2'>
                         <Col>
-                                <Card style={{ width: '100%' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="neozep.webp" />
                                 <Card.Body>
-                                    <Card.Title>Product Name</Card.Title>
-                                    <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                    </Card.Text>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱6.50</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Neozep Forte 500mg</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
                                     <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
                                 </Card.Body>
                                 </Card>
                             </Col>
                             <Col>
-                            <Card style={{ width: '100%' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
+                            <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="decolgen.webp" />
                                 <Card.Body>
-                                    <Card.Title>Product Name</Card.Title>
-                                    <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                    </Card.Text>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱8.50</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Decolgen Tablet 500mg</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
                                     <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
                                 </Card.Body>
                                 </Card>
                             </Col>
                             <Col>
-                                <Card style={{ width: '100%' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
+                            <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="bioflu.webp" />
                                 <Card.Body>
-                                    <Card.Title>Product Name</Card.Title>
-                                    <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                    </Card.Text>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱9.50</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Bioflu Tablet 500mg</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
                                     <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
                                 </Card.Body>
                                 </Card>
                             </Col>
                             <Col>
-                            <Card style={{ width: '100%' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
+                            <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="nasatapp.webp" />
                                 <Card.Body>
-                                    <Card.Title>Product Name</Card.Title>
-                                    <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                    </Card.Text>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱9.00</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Nasatapp Tablet 15mg/12mg</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
                                     <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
                                 </Card.Body>
                                 </Card>
                             </Col>
                         </Row>
                         <Row className='g-4 mt-4'>
                         <Col>
-                                <Card style={{ width: '100%' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
+                        <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="robitussin.webp" />
                                 <Card.Body>
-                                    <Card.Title>Product Name</Card.Title>
-                                    <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                    </Card.Text>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱13.50</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Robitussin Expectorant</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
                                     <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
                                 </Card.Body>
                                 </Card>
                             </Col>
                             <Col>
-                            <Card style={{ width: '100%' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
+                            <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="nasatapp.webp" />
                                 <Card.Body>
-                                    <Card.Title>Product Name</Card.Title>
-                                    <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                    </Card.Text>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱9.00</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Nasatapp Tablet 15mg/12mg</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
                                     <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
                                 </Card.Body>
                                 </Card>
                             </Col>
                             <Col>
-                                <Card style={{ width: '100%' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
+                            <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="solmux.webp" />
                                 <Card.Body>
-                                    <Card.Title>Product Name</Card.Title>
-                                    <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                    </Card.Text>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱12.00</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Solmux Capsule</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
                                     <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
                                 </Card.Body>
                                 </Card>
                             </Col>
                             <Col>
-                            <Card style={{ width: '100%' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
+                            <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="sinupret.webp" />
                                 <Card.Body>
-                                    <Card.Title>Product Name</Card.Title>
-                                    <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                    </Card.Text>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱14.00</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Sinupret Tablet 15mg/12mg</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
                                     <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="sinupret.webp" />
+                                <Card.Body>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱19.50</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Sinupret Forte Tablet</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
+                                    <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="neozep.webp" />
+                                <Card.Body>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱6.50</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Neozep Forte 500mg</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
+                                    <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="neozep.webp" />
+                                <Card.Body>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱6.50</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Neozep Forte 500mg</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
+                                    <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="neozep.webp" />
+                                <Card.Body>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱6.50</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Neozep Forte 500mg</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
+                                    <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card style={{ width: '110%' }}>
+                                <Card.Img variant="top" src="neozep.webp" />
+                                <Card.Body>
+                                    <div className="d-flex justify-content-center mb-2">
+                                    <Card.Subtitle className="mb-2 text-muted">₱6.50</Card.Subtitle> {/* Add Price Here */}</div>
+                                    <Card.Title className="card-title-small">Neozep Forte 500mg</Card.Title>
+                                    <div className="d-flex justify-content-between mt-auto">
+                                    <Button variant="primary">Add to Cart</Button>
+                                    <Button variant="primary" className="ms-auto">Buy Now</Button>
+                                    </div>
                                 </Card.Body>
                                 </Card>
                             </Col>
