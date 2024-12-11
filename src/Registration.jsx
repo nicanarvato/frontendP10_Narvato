@@ -120,6 +120,7 @@ function Registration() {
                     "Register"
                 )}
                                 </Button>
+                                <Button href='/homepage' variant="secondary" className='w-100 mt-3'>Go Back</Button>
                             </Form>
                         </div>
                     </Col>
