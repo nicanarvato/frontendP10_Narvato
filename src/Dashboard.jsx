@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {jwtDecode} from 'jwt-decode';
 
-import { Nav, Navbar, Container, Button, Form, NavDropdown, Row, Col, Card, Carousel } from 'react-bootstrap';
+import { Nav, Navbar, Container, Button, Form, NavDropdown, Row, Col, Card, Carousel, ListGroup } from 'react-bootstrap';
 
 function Dashboard() {
     const [user, setUser] = useState(null);
@@ -38,7 +38,17 @@ function Dashboard() {
     };
 
     return (
-        <div>
+        <div className='container' style={{height:"100vh", width:"100vw", padding:"0"}}>
+            <Carousel >
+            <Carousel.Item>
+                <img src='9891033.jpg' style={{width: "100%", height: "168px", objectFit: "cover" }}  />
+            </Carousel.Item>
+            <Carousel.Item>
+                <img src='6188530.jpg' style={{width: "100%", height: "168px", objectFit: "cover" }} />
+            </Carousel.Item><Carousel.Item>
+                <img src='17677.jpg' style={{width: "100%", height: "168px", objectFit: "cover" }} />
+            </Carousel.Item>
+            </Carousel>
             {/* Navigation Bar */}
             <Navbar bg="primary" variant="dark" expand="lg" className="py-3">
                 <Container>
@@ -54,7 +64,7 @@ function Dashboard() {
                             />
                             <Button variant="outline-light">Search</Button>
                         </Form>
-                        <Nav className="ms-auto">
+                        <Nav className="ms-100%">
                             <NavDropdown title={user ? `User: ${user.username}` : 'Account'} id="basic-nav-dropdown" align="end">
                             <NavDropdown.Item href="#">Profile</NavDropdown.Item>
                             <NavDropdown.Item href="#">Settings</NavDropdown.Item>
@@ -65,41 +75,163 @@ function Dashboard() {
                 </Container>
             </Navbar>
 
-            {/* Categories Section */}
-            {/* <div className="bg-danger text-white py-2">
-                <Container>
-                    <Navbar>
-                    <Nav className="justify-content-center">
-                        <Nav.Link href="#" className="text-white">TruMedsRX Pharmacy </Nav.Link>
-                        <Nav.Link href="#" className="text-white">Pharmacy</Nav.Link>
-                        <Nav.Link href="#" className="text-white">Health Care</Nav.Link>
-                        <Nav.Link href="#" className="text-white">Beauty</Nav.Link>
-                        <Nav.Link href="#" className="text-white">Personal Care</Nav.Link>
-                        <Nav.Link href="#" className="text-white">Baby & Kids</Nav.Link>
-                        <Nav.Link href="#" className="text-warning">SALE</Nav.Link>
-                    </Nav>
-                    </Navbar>
-                </Container>
-            </div> */}
+            <div className="bg-danger text-white py-2">
+    <Container>
+        <Navbar expand="lg">
+            <Navbar.Toggle aria-controls="second-navbar-content" />
+            <Navbar.Collapse id="second-navbar-content">
+                <Nav className="justify-content-center">
+                    <Nav.Link href="#" className="text-white">TruMedsRX Pharmacy</Nav.Link>
+                    <Nav.Link href="#" className="text-white">Pharmacy</Nav.Link>
+                    <Nav.Link href="#" className="text-white">Health Care</Nav.Link>
+                    <Nav.Link href="#" className="text-white">Beauty</Nav.Link>
+                    <Nav.Link href="#" className="text-white">Personal Care</Nav.Link>
+                    <Nav.Link href="#" className="text-white">Baby & Kids</Nav.Link>
+                    <Nav.Link href="#" className="text-warning">SALE</Nav.Link>
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
+    </Container>
+</div>
 
-            {/* Main Banner (Carousel) */}
+
             <Container className="mt-4">
-                <Carousel>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://via.placeholder.com/1200x400" // Replace with your banner image
-                            alt="Mega Christmas Sale"
-                        />
-                        <Carousel.Caption>
-                            <h3>Mega Christmas Sale</h3>
-                            <p>Shop now for amazing discounts on a wide range of products!</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
+                <Row style={{ backgroundColor: "blue", color: "white", alignItems: "center" }}>
+                    <Col lg={6}>
+                        <h3 style={{ color: "white", fontFamily:"cursive", fontWeight:"bold" }}>TRUSERVE <br /> PHARMACEUTICAL</h3>
+                    </Col>
+                    <Col lg={6} className="text-center">
+                        <img src="/bg.jpg" alt="Truserve" style={{ height: "350px", width: "100%", objectFit: "cover" }} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col lg={3}>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>Product Categories</Card.Title>
+                            <ListGroup className="list-group-flush" >
+                            <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                        </ListGroup>
+                        </Card.Body>
+                    </Card>
+                    </Col>
+                    <Col lg={9}>
+                        <Row className='g-4 mt-2'>
+                        <Col>
+                                <Card style={{ width: '100%' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Product Name</Card.Title>
+                                    <Card.Text>
+                                    Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Add to Cart</Button>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                            <Card style={{ width: '100%' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Product Name</Card.Title>
+                                    <Card.Text>
+                                    Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Add to Cart</Button>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card style={{ width: '100%' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Product Name</Card.Title>
+                                    <Card.Text>
+                                    Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Add to Cart</Button>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                            <Card style={{ width: '100%' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Product Name</Card.Title>
+                                    <Card.Text>
+                                    Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Add to Cart</Button>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                        </Row>
+                        <Row className='g-4 mt-4'>
+                        <Col>
+                                <Card style={{ width: '100%' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Product Name</Card.Title>
+                                    <Card.Text>
+                                    Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Add to Cart</Button>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                            <Card style={{ width: '100%' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Product Name</Card.Title>
+                                    <Card.Text>
+                                    Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Add to Cart</Button>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card style={{ width: '100%' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Product Name</Card.Title>
+                                    <Card.Text>
+                                    Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Add to Cart</Button>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                            <Card style={{ width: '100%' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Product Name</Card.Title>
+                                    <Card.Text>
+                                    Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Add to Cart</Button>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+                
             </Container>
 
-            {/* Footer or additional content can go here */}
+
         </div>
     );
 }

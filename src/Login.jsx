@@ -60,12 +60,8 @@ function Login() {
                 <Container>
                     <Navbar.Brand href="#" style={{ fontFamily: "fantasy" }}>TruMedsRX</Navbar.Brand>
                     <Nav className="ms-auto">
-                        <Nav.Link>
                             <Button variant="primary" as={Link} to="/homepage">Home</Button>
-                        </Nav.Link>
-                        <Nav.Link>
                             <Button variant="primary" as={Link} to="/about">About</Button>
-                        </Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
