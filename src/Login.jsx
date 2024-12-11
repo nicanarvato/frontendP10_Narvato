@@ -80,9 +80,9 @@ function Login() {
                                     <h3 style={{ marginBottom: "20px", textAlign: "center" }}>Login to TruMedsRX</h3>
                                     
                                     {/* Username */}
-                                    <Form.Group controlId="formUsername">
+                                    <Form.Group controlId="formUsername"style={{ textAlign: "left" }}>
                                         <Form.Label>Username *</Form.Label>
-                                        <div className="d-flex justify-content-between align-items-center">
+                                        <div>
                                             <Form.Control
                                                 className="form-control-sm rounded-0"
                                                 type="text"
@@ -98,9 +98,9 @@ function Login() {
                                     <br />
 
                                     {/* Password */}
-                                    <Form.Group controlId="formPassword">
+                                    <Form.Group controlId="formPassword"style={{ textAlign: "left" }}>
                                         <Form.Label>Password *</Form.Label>
-                                        <div className="d-flex justify-content-between align-items-center">
+                                        <div>
                                             <Form.Control
                                                 className="form-control-sm rounded-0"
                                                 type="password"
@@ -159,7 +159,7 @@ function Login() {
                                             borderRadius: "5px",
                                             padding: "10px"
                                         }}
-                                    >Sign in via TruMedsRX</Button>
+                                        as={Link} to="/register">Sign in via TruMedsRX</Button>
                                 </Form>
                             </div>
                         </div>
