@@ -71,7 +71,18 @@ function HomePage() {
       ) : (
         // About Section
         <div className="about-section" style={{ padding: "40px" }}>
-          <Container>
+          <br />
+          <br />
+        <Container style={{ backgroundColor: "#f8f9fa" }}>
+            <Row>
+              <Col className="d-flex align-items-center">
+              <img src='/images.jpg' 
+              className="hero-image"
+                  width={"500px"}
+                  height={"300px"}/>
+              </Col>
+              <Col className="d-flex align-items-stretch">
+              <div className="d-flex flex-column justify-content-center">
             <h1>About TruMedsRX</h1>
             <p>
               TruMedsRX is committed to revolutionizing healthcare by providing a seamless way for users to manage their medical needs. We aim to offer reliable, quick, and easy access to essential medications.
@@ -79,8 +90,16 @@ function HomePage() {
             <p>
               Please note: New files can no longer be created in this system.
             </p>
-            <Button variant="secondary" onClick={handleHideAbout}>Go Back</Button>
-          </Container>
+            <Button
+              variant="secondary"
+              onClick={handleHideAbout}
+            >
+              Go Back
+            </Button>
+            </div>
+            </Col>
+            </Row>
+            </Container>
         </div>
       )}
     </div>

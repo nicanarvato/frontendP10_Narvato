@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+.about-section {
+  padding: 40px 0;
+  background-color: #f8f9fa; /* Light background color */
+}
+
+.about-section h1 {
+  margin-bottom: 20px;
+}
+
+.about-section img {
+  max-width: 100%;
+  height: auto;
+}
