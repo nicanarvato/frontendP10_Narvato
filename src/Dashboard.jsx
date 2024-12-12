@@ -35,6 +35,12 @@ function Dashboard() {
         }
     };
 
+    const handleProfile = async () => {
+
+        navigate("/profile");
+    }
+
+
     return (
         <div className='container' style={{height:"100vh", width:"100vw", padding:"0"}}>
             <Carousel >
@@ -64,7 +70,7 @@ function Dashboard() {
                         </Form>
                         <Nav className="ms-100%">
                         <NavDropdown title={user ? `User: ${user.username}`:'Dropdown'} id="basic-nav-dropdown" align="end">
-                            <NavDropdown.Item href="#">Profile</NavDropdown.Item>
+                            <NavDropdown.Item onClick={handleProfile}>Profile</NavDropdown.Item>
                             <NavDropdown.Item href="#">Settings</NavDropdown.Item>
                             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                             </NavDropdown>
