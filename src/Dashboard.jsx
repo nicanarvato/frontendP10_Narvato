@@ -12,13 +12,11 @@ function Dashboard() {
     useEffect(() => {
         const fetchDecodedUserID = async () => {
             try {
-                const token = localStorage.getItem('token');
-                if (!token) {
-                    throw new Error('No token found');
-                }
-                // const parsedToken = JSON.parse(token);
-                // const decodedToken = jwtDecode(parsedToken);
-                // setUser(decodedToken);
+                const response = JSON.parse(localStorage.getItem('token'))
+                setUser(response.data);
+                
+                const decoded_token = jwtDecode(response.data.token);
+                setUser(decoded_token);
             } catch (error) {
                 console.error('Token error:', error);
                 navigate("/HomePage");
@@ -65,7 +63,7 @@ function Dashboard() {
                             <Button variant="outline-light">Search</Button>
                         </Form>
                         <Nav className="ms-100%">
-                            <NavDropdown title={user ? `User: ${user.username}` : 'Account'} id="basic-nav-dropdown" align="end">
+                        <NavDropdown title={user ? `User: ${user.username}`:'Dropdown'} id="basic-nav-dropdown" align="end">
                             <NavDropdown.Item href="#">Profile</NavDropdown.Item>
                             <NavDropdown.Item href="#">Settings</NavDropdown.Item>
                             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>

@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { API_ENDPOINT } from './Api';
-import { Navbar, Container, Button, Form, Row, Col, Nav } from 'react-bootstrap';
+import { Navbar, Container, Button, Form, Row, Col, Nav, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import BackgroundImage from './assets/medicine-capsule-showing-active-ingredients.webp';
-
+import Swal from 'sweetalert2';
 function Login() {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
+
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -30,15 +32,29 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setLoading(true);
         try {
             const response = await axios.post(`${API_ENDPOINT}/auth/login`, {
                 username,
                 password,
             });
             localStorage.setItem("token", JSON.stringify(response));
-            setError('');
+        setError('');
+        setLoading(false)
+        await Swal.fire({
+            title: "Login Success!",
+            icon: "success"
+            });
+
             navigate("/dashboard");
         } catch (error) {
+            setLoading(false)
+            await Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: error.response.data.message
+              }); 
             setError('Invalid username or password');
         }
     };
@@ -61,12 +77,8 @@ function Login() {
     <Navbar.Brand href="#" style={{ fontFamily: "fantasy" }}>TruMedsRX</Navbar.Brand>
     {/* Left-aligned Nav items */}
     <Nav className="me-auto"> {/* "me-auto" aligns items to the left */}
-      <Nav.Link>
         <Button variant="primary" as={Link} to="/homepage">Home</Button>
-      </Nav.Link>
-      <Nav.Link>
         <Button variant="primary" as={Link} to="/homepage">About</Button>
-      </Nav.Link>
     </Nav>
   </Container>
 </Navbar>
@@ -127,7 +139,31 @@ function Login() {
 
                                     {/* Login Button */}
                                     <Form.Group controlId="formButton" className="text-center">
-                                        <Button 
+                                    <Button type="submit" className="w-100" 
+                                    style={{
+                                    width: "100%",
+                                    backgroundColor: "#007bff",
+                                    color: "white",
+                                    border: "none",
+                                    borderRadius: "5px",
+                                    padding: "10px"}}
+
+                                    disabled={loading}>
+                                    {loading ? (
+                                        <>
+                                            <Spinner
+                                                as="span"
+                                                animation="border"
+                                                size="sm"
+                                                role="status"
+                                                aria-hidden="true"
+                                            /> Loading...
+                                        </>
+                                    ) : (
+                                        "Login"
+                                    )}
+                                </Button>
+                                        {/* <Button 
                                             type="submit" 
                                             style={{
                                                 width: "100%",
@@ -137,7 +173,7 @@ function Login() {
                                                 borderRadius: "5px",
                                                 padding: "10px"
                                             }}
-                                        >Login</Button>
+                                        >Login</Button> */}
                                     </Form.Group>
 
                                     <p className="text-center mt-2" style={{ fontSize: "12px" }}>
