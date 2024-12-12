@@ -4,7 +4,7 @@ import {jwtDecode} from 'jwt-decode';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { API_ENDPOINT } from './Api';
-import {Nav, Navbar, Container, Button, Form, NavDropdown, Row, Col, Card, ListGroup} from 'react-bootstrap';
+import {Nav, Navbar, Container, Button, Form, NavDropdown, Row, Col, Card, ListGroup, Modal} from 'react-bootstrap';
 
 function Profile() {
     const [user, setUser] = useState(null);
@@ -13,9 +13,21 @@ function Profile() {
     const [body, setBody] = useState('');
     const [show, setShow] = useState(false);
     const [validationError, setValidationError] = useState(null);
-
+    const [updatedBody, setUpdatedBody] = useState('');
     const navigate = useNavigate();
 
+    const [currentId, setCurrentId] = useState(null);
+    
+    const [updateShow, setUpdateShow] = useState(false);
+
+    const handleUpdateClose = () => setUpdateShow(false);
+
+    const handleUpdateShow = (id, body) => {
+        setCurrentId(id);
+        setUpdatedBody(body);
+        setUpdateShow(true);
+    };
+    
     // Decode token and set user
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -68,6 +80,25 @@ function Profile() {
             setAbout([]);
         }
     };
+
+    // Update about_self
+    const handleUpdateAboutSelf = async (e) => {
+        e.preventDefault();
+        if (!updatedBody.trim()) {
+            Swal.fire({ icon: 'error', text: 'Body content cannot be empty.' });
+            return;
+        }
+        try {
+            await axios.put(`${API_ENDPOINT}/aboutself/${currentId}`, { body: updatedBody }, { headers });
+            Swal.fire({ icon: 'success', text: 'Successfully Updated' });
+            setUpdateShow(false);
+            fetchAboutSelf(); 
+        } catch (error) {
+            console.error('Error updating about self:', error);
+            Swal.fire({ icon: 'error', text: error.response?.data?.message || 'Error occurred while updating about self.' });
+        }
+    };
+    
     
     
     // Add about_self entry
@@ -112,6 +143,7 @@ function Profile() {
         fetchAboutSelf();
     }, []);
 
+
     return (
         <div>
             <Navbar bg="primary" variant="dark" expand="lg" className="py-3">
@@ -140,6 +172,31 @@ function Profile() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+            <Modal show={updateShow} onHide={handleUpdateClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={handleUpdateAboutSelf}>
+                                    <Form.Group className="mt-3">
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Update health characteristics"
+                                            value={updatedBody}
+                                            onChange={(e) => setUpdatedBody(e.target.value)}
+                                        />
+                                        {validationError && <p className="text-danger">{validationError}</p>}
+                                    </Form.Group>
+                                    <Button className="mt-2" type="submit">
+                                     Save Changes
+                                    </Button>
+                                </Form></Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleUpdateClose}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
             <Container className="mt-4">
                 <Row>
                     <Col>
@@ -167,17 +224,20 @@ function Profile() {
                     <Col>
                         <Card>
                             <Card.Body>
-                                <h5>About Self</h5>
+                                <h5>Health Characteristics</h5>
                                 {about.length > 0 ? (
                                     <ListGroup>
                                     {about.map((a) => (
                                         <ListGroup.Item key={a.id}> {/* Add key here */}
                                             <Row>
-                                                <Col>About ID: {a.id}</Col>
+                                                <Col>Item Number: {a.id}</Col>
                                                 <Col>{a.body}</Col>
                                             </Row>
-                                            <Button variant="danger" onClick={() => handleDeleteAboutSelf(a.id)}>
+                                            <Button className='g-2' variant="danger" onClick={() => handleDeleteAboutSelf(a.id)}>
                                                 Delete
+                                            </Button>
+                                            <Button variant="success" onClick={() => handleUpdateShow(a.id, a.body)}>
+                                                Edit
                                             </Button>
                                         </ListGroup.Item>
                                     ))}
