@@ -317,10 +317,12 @@ function Profile() {
                             <Card.Body>
                                 
                                 <table className='table table-bordered'>
-                                    <thead>
-                                    <th style={{padding: 1, margin:0}}>Item No.</th>
-                                    <th style={{padding: 1, margin:0}}>Health Characteristics</th>
-                                    <th style={{padding: 1, margin:0}}>Action</th>
+                                <thead>
+                                    <tr>
+                                        <th style={{ padding: 1, margin: 0 }}>Item No.</th>
+                                        <th style={{ padding: 1, margin: 0 }}>Health Characteristics</th>
+                                        <th style={{ padding: 1, margin: 0 }}>Action</th>
+                                    </tr>
                                     </thead>
 
                                     <tbody>
