@@ -16,6 +16,23 @@ function Profile() {
     const [updatedBody, setUpdatedBody] = useState('');
     const navigate = useNavigate();
 
+    const [updateFullname, setUpdateFullname] = useState('');
+    const [updateUsername, setUpdateUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [userUpdateShow, setUserUpdateShow] = useState(false);
+    
+    const [currentUserId, setCurrentUserId] = useState(null);
+
+    const handleUserUpdateShow = (user) => {
+        setUpdateFullname(user.fullname);
+        setUpdateUsername(user.username);
+        setPassword(''); // Clear the password for security
+        setCurrentUserId(user.user_id); // Save the current user's ID
+        setUserUpdateShow(true);
+    };
+
+    const handleUserUpdateClose = () => setUserUpdateShow (false);
+
     const [currentId, setCurrentId] = useState(null);
     
     const [updateShow, setUpdateShow] = useState(false);
@@ -61,6 +78,22 @@ function Profile() {
             console.error('Error fetching user data:', error);
         }
     };
+
+
+    const handleUpdateUser = async (e) => {
+        e.preventDefault();
+        
+        try {
+            await axios.put(`${API_ENDPOINT}/user/${currentUserId}`, { fullname: updateFullname, username: updateUsername, password }, { headers });
+            Swal.fire({ icon: 'success', text: 'Successfully Updated' });
+            setUpdateShow(false);
+            fetchAboutSelf(); 
+        } catch (error) {
+            console.error('Error updating about self:', error);
+            Swal.fire({ icon: 'error', text: error.response?.data?.message || 'Error occurred while updating about self.' });
+        }
+    };
+    
 
     // Fetch about_self data
     const fetchAboutSelf = async () => {
@@ -172,9 +205,55 @@ function Profile() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <Modal show={updateShow} onHide={handleUpdateClose}>
+
+            <Modal show={userUpdateShow} onHide={handleUserUpdateClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Update User Details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={handleUpdateUser}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Full Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter Full Name"
+                                value={updateFullname}
+                                onChange={(e) => setUpdateFullname(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter Username"
+                                value={updateUsername}
+                                onChange={(e) => setUpdateUsername(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Enter New Password (if changing)"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                            Save Changes
+                        </Button>
+                    </Form>
+    </Modal.Body>
+    <Modal.Footer>
+        <Button variant="secondary" onClick={handleUserUpdateClose}>
+            Close
+        </Button>
+    </Modal.Footer>
+</Modal>
+
+<Modal show={updateShow} onHide={handleUpdateClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Edit Health Characteristics</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleUpdateAboutSelf}>
@@ -197,9 +276,10 @@ function Profile() {
                 </Button>
                 </Modal.Footer>
             </Modal>
+
             <Container className="mt-4">
                 <Row>
-                    <Col>
+                    <Col lg={6} md={12} sm={12}>
                         <Card>
                             <Card.Body>
                                 <h5>User Details</h5>
@@ -207,11 +287,22 @@ function Profile() {
                                     <ListGroup>
                                         {users.map((u) => (
                                             <ListGroup.Item key={u.user_id}>
-                                                <Row>
-                                                    <Col>UserID: {u.user_id}</Col>
-                                                    <Col>Username: {u.username}</Col>
-                                                    <Col>Name: {u.fullname}</Col>
-                                                </Row>
+                                                <ListGroup variant='flush'>
+                                                    <ListGroup.Item>
+                                                    UserID: {u.user_id}
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    Username: {u.username}
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    Name: {u.fullname}
+                                                    </ListGroup.Item>
+                                                    <Button 
+                                                    variant="success" 
+                                                    onClick={() => handleUserUpdateShow(u)}>
+                                                    Edit User
+                                                    </Button>
+                                                    </ListGroup>
                                             </ListGroup.Item>
                                         ))}
                                     </ListGroup>
@@ -221,30 +312,38 @@ function Profile() {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col>
+                    <Col lg={6} md={12} sm={12}>
                         <Card>
                             <Card.Body>
-                                <h5>Health Characteristics</h5>
-                                {about.length > 0 ? (
-                                    <ListGroup>
-                                    {about.map((a) => (
-                                        <ListGroup.Item key={a.id}> {/* Add key here */}
-                                            <Row>
-                                                <Col>Item Number: {a.id}</Col>
-                                                <Col>{a.body}</Col>
-                                            </Row>
-                                            <Button className='g-2' variant="danger" onClick={() => handleDeleteAboutSelf(a.id)}>
-                                                Delete
-                                            </Button>
-                                            <Button variant="success" onClick={() => handleUpdateShow(a.id, a.body)}>
-                                                Edit
-                                            </Button>
-                                        </ListGroup.Item>
-                                    ))}
-                                </ListGroup>
-                                ) : (
-                                    <p>No about self data available.</p>
-                                )}
+                                
+                                <table className='table table-bordered'>
+                                    <thead>
+                                    <th style={{padding: 1, margin:0}}>Item No.</th>
+                                    <th style={{padding: 1, margin:0}}>Health Characteristics</th>
+                                    <th style={{padding: 1, margin:0}}>Action</th>
+                                    </thead>
+
+                                    <tbody>
+                                        {
+                                            about.length > 0 && (
+                                                about.map((a, key)=>(
+                                                    <tr key={a.id}>
+                                                        <td style={{padding: 1, margin:0}}>{a.id}</td>
+                                                        <td style={{padding: 1, margin:0}}>{a.body}</td>
+                                                        <td style={{padding: 1, margin:0}}> 
+                                                            <Button className='g-2' variant="danger" onClick={() => handleDeleteAboutSelf(a.id)}>
+                                                                Delete
+                                                            </Button>
+                                                            <Button variant="success" onClick={() => handleUpdateShow(a.id, a.body)}>
+                                                                Edit
+                                                            </Button> 
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            )
+                                        }
+                                    </tbody>
+                                </table>
                                 <Form onSubmit={handleAddAboutSelf}>
                                     <Form.Group className="mt-3">
                                         <Form.Control
